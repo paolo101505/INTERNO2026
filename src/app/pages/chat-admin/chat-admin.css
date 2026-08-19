@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:host {
+  --card: #FFFFFF;
+  --ink: #1E2321;
+  --ink-soft: #767C71;
+  --accent: #3F7A5C;
+  --accent-soft: #E3EEE6;
+  --amber: #C97A2E;
+  --line: #E5E5DD;
+  --radius: 14px;
+  --shadow: 0 2px 10px rgba(30, 35, 33, 0.06);
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  display: block;
+}
+
+.page-head {
+  margin-bottom: 14px;
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.back-btn:hover {
+  color: var(--accent);
+}
+
+.msg-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.msg-layout {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  height: 520px;
+}
+
+.conv-list {
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+  background: #FBFBF9;
+}
+
+.conv-list-head {
+  padding: 18px 18px 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.conv-item {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding: 13px 16px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+}
+
+.conv-item:hover {
+  background: #F3F4EF;
+}
+
+.conv-item.active {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+}
+
+.conv-av {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.conv-name {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.conv-prev {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.conv-item.active .conv-prev {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.conv-meta {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.unread-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.chat-pane {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.chat-head .status {
+  font-size: 11px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1px;
+}
+
+.chat-head .status .sd {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.chat-body {
+  flex: 1;
+  padding: 22px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: #FAFAF6;
+}
+
+.bubble-row {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.bubble-row.mine {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 60%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.bubble.them {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .03);
+}
+
+.bubble.mine {
+  background: var(--accent);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 22px;
+  border-top: 1px solid var(--line);
+}
+
+.chat-input-row input {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  background: #FBFBF9;
+}
+
+.chat-input-row input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #fff;
+}
+
+.send-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 0 22px;
+  height: 42px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.empty-state {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+  text-align: center;
+  padding: 20px;
+}

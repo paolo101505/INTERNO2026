@@ -1,0 +1,109 @@
+<div class="toolbar">
+   <button class="back-button" (click)="goBack()">‹ Regresar</button>
+ </div>
+ 
+ <div class="container">
+ 
+   <div class="card">
+ 
+     <h1>Registrar nuevo producto</h1>
+     <p class="subtitle">
+       Completa los datos para publicarlo en el catálogo
+     </p>
+     <form [formGroup]="myForm">
+ 
+       <div class="form-group">
+         <label>Nombre del producto</label>
+         <input
+           type="text"
+           formControlName="nombre"
+           placeholder="Ej. Guirnalda de eucalipto seco">
+       </div>
+ 
+       <div class="row">
+ 
+         <div class="form-group">
+           <label>Categoría</label>
+           <select formControlName="categoria">
+             <option value="">Seleccione</option>
+             <option value="Plantas">Plantas</option>
+             <option value="Macetas">Macetas</option>
+           </select>
+         </div>
+ 
+         <div class="form-group">
+           <label>Precio</label>
+           <input
+             type="number"
+             formControlName="precio"
+             placeholder="$0.00">
+         </div>
+ 
+       </div>
+ 
+       <div class="form-group">
+         <label>Fotografía</label>
+ 
+         <div class="upload-box">
+           <input
+             type="file"
+             accept="image/*"
+             (change)="onFileSelected($event)">
+         </div>
+ 
+       </div>
+ 
+       <div class="row">
+ 
+         <div class="form-group">
+           <label>Stock disponible</label>
+           <input
+             type="number"
+             formControlName="stock"
+             placeholder="Ej. 6 unidades">
+         </div>
+ 
+         <div class="form-group">
+           <label>Tiempo estimado de reposición</label>
+           <input
+             type="text"
+             formControlName="reposicion"
+             placeholder="Ej. 2 semanas">
+         </div>
+ 
+       </div>
+ 
+       <div class="form-group">
+         <label>Descripción</label>
+ 
+         <textarea
+           rows="5"
+           formControlName="descripcion"
+           placeholder="Materiales, tamaño y detalles del producto...">
+         </textarea>
+       </div>
+ 
+
+       <div class="buttons">
+ 
+         <button
+           type="button"
+           class="cancel"
+           (click)="goBack()">
+           Cancelar
+         </button>
+ 
+         <button
+           type="button"
+           class="save"
+           (click)="guardar()">
+           Guardar producto
+         </button>
+ 
+       </div>
+ 
+     </form>
+ 
+   </div>
+ 
+ </div>

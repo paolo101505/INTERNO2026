@@ -1,0 +1,73 @@
+<div class="page-head">
+    <button class="back-btn" (click)="goBack()">‹ Regresar</button>
+  </div>
+  
+  <div class="msg-card">
+    <div class="msg-layout">
+  
+      <div class="conv-list">
+        <div class="conv-list-head">Mensajes</div>
+  
+        @for (conv of conversaciones$ | async; track conv.id) {
+          <div
+            class="conv-item"
+            [class.active]="conv.id === conversacionActivaId"
+            (click)="seleccionar(conv)">
+  
+            <div class="conv-av">{{ conv.clienteNombre.charAt(0) }}</div>
+  
+            <div>
+              <div class="conv-name">{{ conv.clienteNombre }}</div>
+              <div class="conv-prev">{{ conv.ultimoMensaje || 'Sin mensajes aún' }}</div>
+            </div>
+  
+            <div class="conv-meta">
+              @if (conv.noLeidosAdmin > 0) {
+                <span class="unread-dot"></span>
+              }
+            </div>
+          </div>
+        } @empty {
+          <div class="empty-state">No hay conversaciones todavía</div>
+        }
+      </div>
+  
+      <div class="chat-pane">
+        @if (conversacionActivaId) {
+          <div class="chat-head">
+            <div class="conv-av">{{ conversacionActivaNombre.charAt(0) }}</div>
+            <div>
+              <div class="conv-name">{{ conversacionActivaNombre }}</div>
+              <div class="status"><span class="sd"></span>Cliente registrado</div>
+            </div>
+          </div>
+  
+          <div class="chat-body">
+            @for (mensaje of mensajes$ | async; track mensaje.id) {
+              <div class="bubble-row" [class.mine]="mensaje.remitente === 'admin'">
+                <div>
+                  <div
+                    class="bubble"
+                    [class.mine]="mensaje.remitente === 'admin'"
+                    [class.them]="mensaje.remitente === 'cliente'">
+                    {{ mensaje.texto }}
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+  
+          <div class="chat-input-row">
+            <input
+              [(ngModel)]="nuevoMensaje"
+              (keyup.enter)="enviar()"
+              placeholder="Escribe una respuesta...">
+            <button class="send-btn" (click)="enviar()">Enviar</button>
+          </div>
+        } @else {
+          <div class="empty-state">Selecciona una conversación para empezar</div>
+        }
+      </div>
+  
+    </div>
+  </div>

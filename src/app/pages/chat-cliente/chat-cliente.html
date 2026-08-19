@@ -1,0 +1,43 @@
+<div class="page-head">
+  <button class="back-btn" (click)="goBack()">‹ Regresar</button>
+</div>
+
+<div class="chat-card">
+  @if (cargando) {
+    <div class="empty-state">Cargando conversación...</div>
+  } @else if (!conversacionId) {
+    <div class="empty-state">Debes iniciar sesión para escribirle a Paola.</div>
+  } @else {
+    <div class="chat-pane">
+      <div class="chat-head">
+        <div class="conv-av">PM</div>
+        <div class="conv-name">Paola Moreno</div>
+      </div>
+
+      <div class="chat-body">
+        @for (mensaje of mensajes$ | async; track mensaje.id) {
+          <div class="bubble-row" [class.mine]="mensaje.remitente === 'cliente'">
+            <div>
+              <div
+                class="bubble"
+                [class.mine]="mensaje.remitente === 'cliente'"
+                [class.them]="mensaje.remitente === 'admin'">
+                {{ mensaje.texto }}
+              </div>
+            </div>
+          </div>
+        } @empty {
+          <div class="empty-state">Escríbele a Paola, aquí verás su respuesta.</div>
+        }
+      </div>
+
+      <div class="chat-input-row">
+        <input
+          [(ngModel)]="nuevoMensaje"
+          (keyup.enter)="enviar()"
+          placeholder="Escribe tu mensaje...">
+        <button class="send-btn" (click)="enviar()">Enviar</button>
+      </div>
+    </div>
+  }
+</div>

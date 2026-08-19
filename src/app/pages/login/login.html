@@ -1,0 +1,52 @@
+
+<div id="login-container">
+    <div id="login">
+   
+      <div class="tab-toggle">
+        <button type="button" class="t" [class.active]="!mostrarRegistro" (click)="mostrarTab('login')">Iniciar sesión</button>
+        <button type="button" class="t" [class.active]="mostrarRegistro" (click)="mostrarTab('registro')">Crear cuenta</button>
+      </div>
+   
+      @if (mostrarRegistro) {
+        <h2>Crea tu cuenta</h2>
+        <p class="sub">Regístrate para hablar directo con el provedor</p>
+   
+        <form [formGroup]="registroForm">
+          <label>Nombre completo</label>
+          <input formControlName="nombre" type="text" placeholder="Ej. María Fernández">
+   
+          <label>Correo electrónico</label>
+          <input formControlName="correo" type="email" placeholder="tu@correo.com">
+   
+          <label>Contraseña</label>
+          <input formControlName="contrasena" type="password" placeholder="••••••••">
+        </form>
+   
+        <button class="btn-full" (click)="crearCuenta()" [disabled]="cargando">
+          {{ cargando ? 'Creando cuenta...' : 'Crear cuenta' }}
+        </button>
+   
+        <div class="foot">¿Ya tienes cuenta? <a (click)="mostrarTab('login')">Inicia sesión</a></div>
+   
+      } @else {
+        <h2>Inicia sesión</h2>
+        <p class="sub">Ingresa para hablar con acceder a la funcion de chat con el provedor</p>
+   
+        <form [formGroup]="loginForm">
+          <label>Correo electrónico</label>
+          <input formControlName="correo" type="email" placeholder="tu@correo.com">
+   
+          <label>Contraseña</label>
+          <input formControlName="contrasena" type="password" placeholder="••••••••">
+        </form>
+   
+        <button class="btn-full" (click)="iniciarSesion()" [disabled]="cargando">
+          {{ cargando ? 'Ingresando...' : 'Iniciar sesión' }}
+        </button>
+   
+        <div class="foot">¿No tienes cuenta? <a (click)="mostrarTab('registro')">Crea una</a></div>
+      }
+   
+    </div>
+  </div>
+   

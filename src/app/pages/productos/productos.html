@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Productos</h1>
+ 
+  @if (esAdmin) {
+    <div class="button-container">
+      <button (click)="addProductos()">Agregar Productos</button>
+    </div>
+  }
+
+  <div class="product-grid">
+    @for (product of products; track product.id) {
+      <div class="product-card">
+        <div class="product-image">
+          <img [src]="product.fotoUrl" [alt]="product.nombre">
+          <span class="stock-badge" [class.out]="product.stock === 0">
+            {{ product.stock > 0 ? 'Disponible' : 'Agotado' }}
+          </span>
+        </div>
+        <div class="product-info">
+          <h3>{{ product.nombre }}</h3>
+          <div class="product-footer">
+            <span class="price">${{ product.precio }}</span>
+            <span class="stock">Stock: {{ product.stock }}</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
