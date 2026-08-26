@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, inject } from '@angular/core';
+import { Component, AfterViewChecked, ChangeDetectorRef, ElementRef, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,7 +13,9 @@ import { Conversacion, Mensaje } from '../services/chat-model';
   templateUrl: './chat-admin.html',
   styleUrl: './chat-admin.css',
 })
-export class ChatAdmin {
+export class ChatAdmin implements AfterViewChecked {
+  @ViewChild('chatBody') private chatBodyRef?: ElementRef<HTMLDivElement>;
+
   private chatService = inject(ChatService);
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
@@ -44,5 +46,21 @@ export class ChatAdmin {
     await this.chatService.enviarMensaje(this.conversacionActivaId, 'admin', texto);
     this.nuevoMensaje = '';
     this.cdr.detectChanges();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollAlFinal();
+  }
+
+  private scrollAlFinal() {
+    if (!this.chatBodyRef) return;
+    const el = this.chatBodyRef.nativeElement;
+    el.scrollTop = el.scrollHeight;
+  }
+
+  formatearHora(fecha: any): string {
+    if (!fecha) return '';
+    const date = fecha.toDate ? fecha.toDate() : new Date(fecha);
+    return date.toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit' });
   }
 }

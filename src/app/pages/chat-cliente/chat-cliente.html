@@ -14,7 +14,7 @@
         <div class="conv-name">Paola Moreno</div>
       </div>
 
-      <div class="chat-body">
+      <div class="chat-body" #chatBody>
         @for (mensaje of mensajes$ | async; track mensaje.id) {
           <div class="bubble-row" [class.mine]="mensaje.remitente === 'cliente'">
             <div>
@@ -23,6 +23,9 @@
                 [class.mine]="mensaje.remitente === 'cliente'"
                 [class.them]="mensaje.remitente === 'admin'">
                 {{ mensaje.texto }}
+              </div>
+              <div class="bubble-time" [class.mine]="mensaje.remitente === 'cliente'">
+                {{ formatearHora(mensaje.fecha) }}
               </div>
             </div>
           </div>

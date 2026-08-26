@@ -63,3 +63,32 @@
   font-weight: 700;
   color: #111;
 }
+
+.back-btn {
+  background: transparent;
+  border: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+utton · CSS
+.page-head {
+  margin-bottom: 14px;
+}
+ 
+.back-button {
+  background: transparent;
+  border: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #767C71;
+  cursor: pointer;
+  padding: 6px 0;
+}
+ 
+.back-button:hover {
+  color: #3F7A5C;
+}

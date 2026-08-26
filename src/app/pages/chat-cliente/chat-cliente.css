@@ -194,3 +194,27 @@
   color: var(--ink-soft);
   font-size: 13px;
 }
+
+/* Agrega o ajusta esto en tu chat-cliente.css existente */
+
+.chat-body {
+  flex: 1;
+  max-height: 420px;       /* altura fija -> lo que activa el scroll */
+  overflow-y: auto;        /* aquí aparece la barra de scroll */
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  background: #FAFAF6;
+  scroll-behavior: smooth;
+}
+
+.bubble-time {
+  font-size: 10px;
+  color: #A2A79A;
+  margin-top: 3px;
+  text-align: left;
+}
+
+.bubble-time.mine {
+  text-align: right;
+}

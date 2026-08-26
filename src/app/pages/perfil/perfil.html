@@ -1,0 +1,33 @@
+<div class="page-head">
+    <button class="back-button" (click)="goBack()">‹ Regresar</button>
+  </div>
+  
+  <div class="profile-card">
+    @if (cargando) {
+      <div class="empty-state">Cargando perfil...</div>
+    } @else {
+      <h2>Mi perfil</h2>
+      <p class="sub">Actualiza tu nombre, correo o contraseña</p>
+  
+      <form [formGroup]="perfilForm">
+        <label>Nombre completo</label>
+        <input formControlName="nombre" type="text">
+  
+        <label>Correo electrónico</label>
+        <input formControlName="correo" type="email">
+  
+        <hr>
+        <p class="sub">Para cambiar tu correo o contraseña, confirma tu contraseña actual:</p>
+  
+        <label>Contraseña actual</label>
+        <input formControlName="contrasenaActual" type="password" placeholder="Solo si cambias correo o contraseña">
+  
+        <label>Nueva contraseña (opcional)</label>
+        <input formControlName="contrasenaNueva" type="password" placeholder="Déjalo vacío si no la quieres cambiar">
+      </form>
+  
+      <button class="btn-full" (click)="guardarCambios()" [disabled]="guardando">
+        {{ guardando ? 'Guardando...' : 'Guardar cambios' }}
+      </button>
+    }
+  </div>

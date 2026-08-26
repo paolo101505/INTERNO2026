@@ -8,6 +8,8 @@ import { ChatAdmin } from './pages/chat-admin/chat-admin';
 import { ChatCliente } from './pages/chat-cliente/chat-cliente';
 import { adminGuard } from './pages/services/admin-guard';
 import { authGuard } from './pages/services/auth-guard';
+import { Perfil } from './pages/perfil/perfil';
+
 
 
 export const routes: Routes = [
@@ -20,5 +22,6 @@ export const routes: Routes = [
     {path:'chat-cliente',component:ChatCliente},
     {path: 'chat-admin', component: ChatAdmin, canActivate: [authGuard, adminGuard] },
     {path: 'chat-cliente', component: ChatCliente, canActivate: [authGuard] },
+    {path: 'perfil', component: Perfil}
 
 ];

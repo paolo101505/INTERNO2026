@@ -1,6 +1,12 @@
+
+  <button class="back-button" (click)="goHome()">‹ Regresar</button>
 <div class="container">
-  <h1>Productos</h1>
- 
+  <h1>{{ nombreCategoria() }}</h1>
+
+  @if (categoriaActiva) {
+    <a routerLink="/productos" class="clear-filter">‹ Ver todos los productos</a>
+  }
+
   @if (esAdmin) {
     <div class="button-container">
       <button (click)="addProductos()">Agregar Productos</button>
@@ -24,7 +30,8 @@
           </div>
         </div>
       </div>
+    } @empty {
+      <p class="empty-state">No hay productos en esta categoría todavía.</p>
     }
   </div>
 </div>
-

@@ -1,109 +1,71 @@
-<div class="toolbar">
-   <button class="back-button" (click)="goBack()">‹ Regresar</button>
- </div>
- 
- <div class="container">
- 
-   <div class="card">
- 
-     <h1>Registrar nuevo producto</h1>
-     <p class="subtitle">
-       Completa los datos para publicarlo en el catálogo
-     </p>
-     <form [formGroup]="myForm">
- 
-       <div class="form-group">
-         <label>Nombre del producto</label>
-         <input
-           type="text"
-           formControlName="nombre"
-           placeholder="Ej. Guirnalda de eucalipto seco">
-       </div>
- 
-       <div class="row">
- 
-         <div class="form-group">
-           <label>Categoría</label>
-           <select formControlName="categoria">
-             <option value="">Seleccione</option>
-             <option value="Plantas">Plantas</option>
-             <option value="Macetas">Macetas</option>
-           </select>
-         </div>
- 
-         <div class="form-group">
-           <label>Precio</label>
-           <input
-             type="number"
-             formControlName="precio"
-             placeholder="$0.00">
-         </div>
- 
-       </div>
- 
-       <div class="form-group">
-         <label>Fotografía</label>
- 
-         <div class="upload-box">
-           <input
-             type="file"
-             accept="image/*"
-             (change)="onFileSelected($event)">
-         </div>
- 
-       </div>
- 
-       <div class="row">
- 
-         <div class="form-group">
-           <label>Stock disponible</label>
-           <input
-             type="number"
-             formControlName="stock"
-             placeholder="Ej. 6 unidades">
-         </div>
- 
-         <div class="form-group">
-           <label>Tiempo estimado de reposición</label>
-           <input
-             type="text"
-             formControlName="reposicion"
-             placeholder="Ej. 2 semanas">
-         </div>
- 
-       </div>
- 
-       <div class="form-group">
-         <label>Descripción</label>
- 
-         <textarea
-           rows="5"
-           formControlName="descripcion"
-           placeholder="Materiales, tamaño y detalles del producto...">
-         </textarea>
-       </div>
- 
+<div class="page-head">
+  <button class="back-button" (click)="goBack()">‹ Regresar</button>
+</div>
 
-       <div class="buttons">
- 
-         <button
-           type="button"
-           class="cancel"
-           (click)="goBack()">
-           Cancelar
-         </button>
- 
-         <button
-           type="button"
-           class="save"
-           (click)="guardar()">
-           Guardar producto
-         </button>
- 
-       </div>
- 
-     </form>
- 
-   </div>
- 
- </div>
+<div class="content">
+  <div class="content-head">
+    <h2>Registrar nuevo producto</h2>
+    <p>Completa los datos para publicarlo en el catálogo</p>
+  </div>
+
+  <div class="form-card">
+    <form [formGroup]="myForm">
+
+      <div class="form-row">
+        <label>Nombre del producto</label>
+        <input formControlName="nombre" type="text" placeholder="Ej. Guirnalda de eucalipto seco">
+      </div>
+
+      <div class="form-2col">
+        <div class="form-row">
+          <label>Categoría</label>
+          <select formControlName="categoria">
+            <option value="plantas">Plantas</option>
+            <option value="adornos">Adornos</option>
+            <option value="temporada">Artesanías de temporada</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Precio</label>
+          <input formControlName="precio" type="number" placeholder="$0.00">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label>Fotografía</label>
+        <div class="dropzone" (click)="fileInput.click()">
+          @if (previewUrl) {
+            <img [src]="previewUrl" alt="Vista previa" class="preview-image">
+          } @else {
+            <span>Arrastra una imagen aquí o <b>selecciona un archivo</b></span>
+          }
+        </div>
+        <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" hidden>
+      </div>
+
+      <div class="form-2col">
+        <div class="form-row">
+          <label>Stock disponible</label>
+          <input formControlName="stock" type="number" placeholder="Ej. 6 unidades">
+        </div>
+        <div class="form-row">
+          <label>Tiempo estimado de reposición</label>
+          <input formControlName="tiempoReposicion" type="text" placeholder="Ej. 2 semanas (si se agota)">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label>Descripción</label>
+        <textarea formControlName="descripcion" placeholder="Materiales, tamaño y detalles del producto..."></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" (click)="goBack()">Cancelar</button>
+        <button type="button" class="btn-primary" (click)="guardar()" [disabled]="subiendo">
+          {{ subiendo ? 'Guardando...' : 'Guardar producto' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

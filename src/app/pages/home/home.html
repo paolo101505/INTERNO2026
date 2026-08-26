@@ -10,7 +10,7 @@
    
     <div class="right">
       <span>✉ Mensajes</span>
-      <div class="avatar">CL</div>
+      <div class="avatar" routerLink="/perfil" style="cursor: pointer;">CL</div>
     </div>
   </header>
    
@@ -20,38 +20,34 @@
     <p>Cada pieza está hecha a mano por Paola, en pequeños lotes que cambian según el material y la temporada.</p>
    
     <div class="hero-btns">
-      <button class="btn-primary">Ver catálogo</button>
-      <button class="btn-outline">Conocer más</button>
+      <a routerLink="/productos" class="btn-primary">Ver catálogo</a>
+      <a routerLink="/nosotros" class="btn-outline">Conocer más</a>
     </div>
-  </section>
-   
+
   <section class="categories">
     <h2>Explora por categoría</h2>
-   
-    <div class="cat-row">
-      <div class="cat-card">
-        <div class="cat-ic"> <img src="https://cdn-icons-png.flaticon.com/256/10844/10844723.png"> </div>
-        <div>
-          <div class="cat-name">Plantas</div>
-          <div class="cat-sub">12 productos</div>
-        </div>
+  <div class="cat-row">
+    <a class="cat-card" [routerLink]="['/productos']" [queryParams]="{categoria: 'plantas'}">
+      <div class="cat-ic"><img src="https://cdn-icons-png.flaticon.com/256/10844/10844723.png"></div>
+      <div>
+        <div class="cat-name">Plantas</div>
+        <div class="cat-sub">12 productos</div>
       </div>
-   
-      <div class="cat-card">
-        <div class="cat-ic">🪴</div>
-        <div>
-          <div class="cat-name">Adornos</div>
-          <div class="cat-sub">14 productos</div>
-        </div>
+    </a>
+  
+    <a class="cat-card" [routerLink]="['/productos']" [queryParams]="{categoria: 'adornos'}">
+      <div class="cat-ic">🪴</div>
+      <div>
+        <div class="cat-name">Adornos</div>
+        <div class="cat-sub">14 productos</div>
       </div>
-   
-      <div class="cat-card">
-        <div class="cat-ic">🍂</div>
-        <div>
-          <div class="cat-name">Artesanías de temporada</div>
-          <div class="cat-sub">6 productos</div>
-        </div>
+    </a>
+  
+    <a class="cat-card" [routerLink]="['/productos']" [queryParams]="{categoria: 'temporada'}">
+      <div class="cat-ic">🍂</div>
+      <div>
+        <div class="cat-name">Artesanías de temporada</div>
+        <div class="cat-sub">6 productos</div>
       </div>
-    </div>
-  </section>
-   
+    </a>
+  </div>
