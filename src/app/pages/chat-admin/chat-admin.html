@@ -8,6 +8,7 @@
     <div class="conv-list">
       <div class="conv-list-head">Mensajes</div>
 
+
       @for (conv of conversaciones$ | async; track conv.id) {
         <div
           class="conv-item"
